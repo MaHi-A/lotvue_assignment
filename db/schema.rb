@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_113_105_240) do
+ActiveRecord::Schema.define(version: 20_190_113_130_513) do
   create_table 'comments', force: :cascade do |t|
     t.text 'description'
     t.integer 'post_id'
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20_190_113_105_240) do
 
   create_table 'permissions', force: :cascade do |t|
     t.string 'resource'
-    t.text 'access_type'
+    t.text 'authorized_for'
     t.integer 'user_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false

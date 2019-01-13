@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/sign_out' => 'devise/sessions#destroy'
   end
 
-  get '/dashboard', to: 'dashboard#posts'
+  get '/dashboard', to: 'dashboard#show'
 
   resources :users do
     resources :posts do
