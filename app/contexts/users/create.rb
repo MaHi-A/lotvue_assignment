@@ -18,14 +18,24 @@ module Users
     end
 
     def rebuild_the_permissions_attributes
-      generate_default_permissions if params[:permisssions_attributes].blank?
+      generate_default_permissions unless params[:permisssions_attributes].present? && params[:permisssions_attributes][:authorized_for].present?
       params[:permisssions_attributes] = params[:permisssions_attributes].map do |permission|
-        permission.select { Permission::ACCESS_LEVELS.include?(key) }
+        # In future if we want to give permissions based on the model level,
+        # we need to send resource type from the front-end Ex: resource: 'Post'
+        permission.select { Permission::ACCESS_LEVELS.include?(key) }.merge(resource: 'all')
       end
     end
 
     def set_default_permissions
-      params[:permisssions_attributes] = [{ 'no_access' => 'true', 'read' => 'false', 'write' => 'false', 'all' => 'false' }]
+      params[:permisssions_attributes] = [
+        {
+          resource: 'all',
+          authorized_for: {
+            'no_access' => 'true', 'read' => 'false',
+            'write' => 'false', 'all' => 'false'
+          }
+        }
+      ]
     end
   end
 end
