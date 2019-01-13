@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_113_100_301) do
+ActiveRecord::Schema.define(version: 20_190_113_105_240) do
   create_table 'comments', force: :cascade do |t|
     t.text 'description'
     t.integer 'post_id'
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20_190_113_100_301) do
 
   create_table 'users', force: :cascade do |t|
     t.string 'name'
-    t.integer 'role_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'email', default: '', null: false
@@ -58,6 +57,5 @@ ActiveRecord::Schema.define(version: 20_190_113_100_301) do
     t.datetime 'remember_created_at'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
-    t.index ['role_id'], name: 'index_users_on_role_id'
   end
 end

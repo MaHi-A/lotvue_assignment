@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/sign_in' => 'devise/sessions#new'
   end
+
+  resources :users do
+    resources :posts do
+      resources :comments
+    end
+  end
 end

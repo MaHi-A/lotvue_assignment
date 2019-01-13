@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :permissions, dependent: :destroy
 
   # Validations
-  validates :name, :email, :role, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true,
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 end
