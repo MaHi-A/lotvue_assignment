@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  ROLES = ['No Access', 'View Access', 'Add Access']
-  enum role: ROLES
-
   # Associations
   has_many :posts, dependent: :destroy
+  has_many :permission, dependent: :destroy
 
   # Validations
   validates :name, :email, :role, presence: true

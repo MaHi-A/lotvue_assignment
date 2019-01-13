@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_113_091_430) do
+ActiveRecord::Schema.define(version: 20_190_113_094_352) do
   create_table 'comments', force: :cascade do |t|
     t.text 'description'
     t.integer 'post_id'
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20_190_113_091_430) do
     t.datetime 'updated_at', null: false
     t.index ['post_id'], name: 'index_comments_on_post_id'
     t.index ['user_id'], name: 'index_comments_on_user_id'
+  end
+
+  create_table 'permissions', force: :cascade do |t|
+    t.string 'resource'
+    t.text 'access_type'
+    t.integer 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_permissions_on_user_id'
   end
 
   create_table 'posts', force: :cascade do |t|
